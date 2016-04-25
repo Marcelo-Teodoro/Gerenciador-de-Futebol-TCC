@@ -12,7 +12,7 @@ public class ImageDao {
     
     public int save(Imagem image) {
 
-        //inicializando o retorno da função , caso tenha algum problema deve ser retornar o valor -1
+        // =S inicializando o retorno da função, caso tenha algum problema deve ser retornar o valor -1
         int resultado = -1;
 
         Connection conn = ConnectionManager.getConnection();

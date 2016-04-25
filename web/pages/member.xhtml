@@ -12,7 +12,12 @@
     </ui:define>
 
     <ui:define name="conteudo"> 
-        <p:dataTable emptyMessage="Nenhum Membro encontrado." value="#{MBMember.memberList}" var="member">
+        <p:dataTable emptyMessage="Nenhum Membro encontrado." 
+                     value="#{MBMember.memberList}" 
+                     var="member"                     
+                     paginator="true"
+                     rows="10">
+
             <f:facet name="header" >
                 Relação Geral de Membros do Clube
             </f:facet>
@@ -25,32 +30,33 @@
             </p:column>
 
             <p:column headerText="Função" sortBy="#{member.nivelAcesso}">
-                <h:outputText value="" />
+                <h:outputText value="#{member.nivelAcesso}" />
             </p:column>
 
             <p:column headerText="Data Nascimento" sortBy="#{member.dtNascimento}">
-                <h:outputText value="" />
+                <h:outputText value="#{member.dtNascimento}" />
             </p:column>
 
             <p:column headerText="Endereço" sortBy="#{member.endereco}">
-                <h:outputText value="" />
+                <h:outputText value="#{member.endereco}" />
             </p:column>
 
             <p:column headerText="CPF" sortBy="#{member.cpf}">
-                <h:outputText value="" />
+                <h:outputText value="#{member.cpf}" />
             </p:column>
 
             <p:column headerText="RG" sortBy="#{member.rg}">
-                <h:outputText value="" />
+                <h:outputText value="#{member.rg}" />
             </p:column>
 
             <p:column headerText="Telefone" sortBy="#{member.telefone}">
-                <h:outputText value="" />
+                <h:outputText value="#{member.telefone}" />
             </p:column>
 
             <p:column headerText="Email" sortBy="#{member.eMail}">
-                <h:outputText value="" />
+                <h:outputText value="#{member.eMail}" />
             </p:column>
+
         </p:dataTable>
     </ui:define>
 

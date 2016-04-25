@@ -18,8 +18,8 @@ public class Member {
     private String nomeMember;
     private Date dtNascimento;
     private String endereco;
-    private Integer cpf;
-    private Integer rg;
+    private int cpf;
+    private int rg;
     private String eMail;
     private String nivelAcesso;
     private List<Integer> telefone;
@@ -80,28 +80,36 @@ public class Member {
         this.endereco = endereco;
     }
 
-    public Integer getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Integer cpf) {
-        this.cpf = cpf;
-    }
-
-    public Integer getRg() {
-        return rg;
-    }
-
-    public void setRg(Integer rg) {
-        this.rg = rg;
-    }
-
     public List<Integer> getTelefone() {
         return telefone;
     }
 
     public void setTelefone(List<Integer> telefone) {
         this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return eMail;
+    }
+
+    public void setEmail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public int getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(int cpf) {
+        this.cpf = cpf;
+    }
+
+    public int getRg() {
+        return rg;
+    }
+
+    public void setRg(int rg) {
+        this.rg = rg;
     }
 
     public String geteMail() {
@@ -111,5 +119,7 @@ public class Member {
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
+
+  
     
 }

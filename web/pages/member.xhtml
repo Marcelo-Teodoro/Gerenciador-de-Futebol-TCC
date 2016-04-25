@@ -11,53 +11,107 @@
         <ui:include src="/pages/menu.xhtml"/>
     </ui:define>
 
-    <ui:define name="conteudo"> 
-        <p:dataTable emptyMessage="Nenhum Membro encontrado." 
-                     value="#{MBMember.memberList}" 
-                     var="member"                     
-                     paginator="true"
-                     rows="10">
+    <ui:define name="conteudo">
+        <h:form id="formTblMember">
+            <p:dataTable id="tblMember" emptyMessage="Nenhum Membro encontrado." 
+                         value="#{MBMember.memberList}" 
+                         var="member"                     
+                         paginator="true"
+                         rows="10">
 
-            <f:facet name="header" >
-                Relação Geral de Membros do Clube
-            </f:facet>
-            <p:column headerText="Código" sortBy="#{member.idmember}">
-                <h:outputText value="#{member.idMember}" />
-            </p:column>
+                <f:facet name="header" >
+                    Relação Geral de Membros do Clube
+                </f:facet>
+                
+                <p:column headerText="Código" sortBy="#{member.idMember}">
+                    <h:outputText value="#{member.idMember}" />
+                </p:column>
 
-            <p:column headerText="Nome" sortBy="#{member.nomeMember}">
-                <h:outputText value="#{member.nomeMember}" />
-            </p:column>
+                <p:column headerText="Nome" sortBy="#{member.nomeMember}">
+                    <h:outputText value="#{member.nomeMember}" />
+                </p:column>
 
-            <p:column headerText="Função" sortBy="#{member.nivelAcesso}">
-                <h:outputText value="#{member.nivelAcesso}" />
-            </p:column>
+                <p:column headerText="Função" sortBy="#{member.nivelAcesso}">
+                    <h:outputText value="#{member.nivelAcesso}" />
+                </p:column>
 
-            <p:column headerText="Data Nascimento" sortBy="#{member.dtNascimento}">
-                <h:outputText value="#{member.dtNascimento}" />
-            </p:column>
+                <p:column headerText="Data Nascimento" sortBy="#{member.dtNascimento}">
+                    <h:outputText value="#{member.dtNascimento}" />
+                </p:column>
 
-            <p:column headerText="Endereço" sortBy="#{member.endereco}">
-                <h:outputText value="#{member.endereco}" />
-            </p:column>
+                <p:column headerText="Endereço" sortBy="#{member.endereco}">
+                    <h:outputText value="#{member.endereco}" />
+                </p:column>
 
-            <p:column headerText="CPF" sortBy="#{member.cpf}">
-                <h:outputText value="#{member.cpf}" />
-            </p:column>
+                <p:column headerText="CPF" sortBy="#{member.cpf}">
+                    <h:outputText value="#{member.cpf}" />
+                </p:column>
 
-            <p:column headerText="RG" sortBy="#{member.rg}">
-                <h:outputText value="#{member.rg}" />
-            </p:column>
+                <p:column headerText="RG" sortBy="#{member.rg}">
+                    <h:outputText value="#{member.rg}" />
+                </p:column>
 
-            <p:column headerText="Telefone" sortBy="#{member.telefone}">
-                <h:outputText value="#{member.telefone}" />
-            </p:column>
+                <p:column headerText="Telefone" sortBy="#{member.telefone}">
+                    <h:outputText value="#{member.telefone}" />
+                </p:column>
 
-            <p:column headerText="Email" sortBy="#{member.eMail}">
-                <h:outputText value="#{member.eMail}" />
-            </p:column>
+                <p:column headerText="Email" sortBy="#{member.email}">
+                    <h:outputText value="#{member.email}" />
+                </p:column>
+                
+                <f:facet name="footer" >
+                    <p:commandButton value="Novo" actionListener="#{MBMember.prepararMember()}" 
+                                     oncomplete="PF('newMember').show()"
+                                     update=":formPnlNewMember:pnlNewMember" />
+                </f:facet>
+            </p:dataTable>
+        </h:form>   
 
-        </p:dataTable>
+        <p:dialog widgetVar="newMember"
+                  closable="false"
+                  draggable="true"
+                  resizable="false"
+                  modal="true" appendTo="@(body)"
+                  header="Cadastro de Membro do Clube">
+            
+            <h:form id="formPnlNewMember">
+                <h:panelGrid id="pnlNewMember" columns="2">
+                    <p:outputLabel value="Nome" />
+                    <p:inputText size="30" maxlength="30" value="#{MBMember.member.nomeMember}"/>
+
+                    <p:outputLabel value="Data de Nascimento" />
+                    <p:inputText size="30" maxlength="30"/>                    
+
+                    <p:outputLabel value="Endereço" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                    <p:outputLabel value="CPF" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                    <p:outputLabel value="RG" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                    <p:outputLabel value="E-Mail" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                    <p:outputLabel value="Função" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                    <p:outputLabel value="Telefone" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                </h:panelGrid>
+                
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar" actionListener="#{MBMember.saveMember()}"
+                                     oncomplete="PF('newMember').hide();" 
+                                     update=":formTblMember:tblMember" />
+                    <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>
+                </h:panelGrid>                
+                
+            </h:form>
+        </p:dialog>
+
     </ui:define>
 
 </ui:composition>

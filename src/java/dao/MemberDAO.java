@@ -36,7 +36,7 @@ public class MemberDAO {
                 stmt.setString(3, member.getEndereco());
                 stmt.setInt(4, member.getCpf());
                 stmt.setInt(5, member.getRg());
-                stmt.setString(6, member.geteMail());
+                stmt.setString(6, member.getEmail());
                 stmt.setString(7, member.getNivelAcesso());
 
                 stmt.executeUpdate();
@@ -56,7 +56,7 @@ public class MemberDAO {
                 stmt.setString(3, member.getEndereco());
                 stmt.setInt(4, member.getCpf());
                 stmt.setInt(5, member.getRg());
-                stmt.setString(6, member.geteMail());
+                stmt.setString(6, member.getEmail());
                 stmt.setString(7, member.getNivelAcesso());
                 stmt.setInt(4, member.getIdMember());
 
@@ -128,7 +128,7 @@ public class MemberDAO {
                 member.setEndereco(rs.getString("endereco"));
                 member.setCpf(rs.getInt("cpf"));
                 member.setRg(rs.getInt("rg"));
-                member.seteMail(rs.getString("endereco"));
+                member.setEmail(rs.getString("endereco"));
                 member.setNivelAcesso(rs.getString("nivelAcesso"));
             }
             
@@ -171,7 +171,7 @@ public class MemberDAO {
                 member.setEndereco(rs.getString("endereco"));
                 member.setCpf(rs.getInt("cpf"));
                 member.setRg(rs.getInt("rg"));
-                member.seteMail(rs.getString("endereco"));
+                member.setEmail(rs.getString("endereco"));
                 member.setNivelAcesso(rs.getString("nivelAcesso"));
             }
             
@@ -215,7 +215,7 @@ public class MemberDAO {
                 member.setEndereco(rs.getString("endereco"));
                 member.setCpf(rs.getInt("cpf"));
                 member.setRg(rs.getInt("rg"));
-                member.seteMail(rs.getString("email"));
+                member.setEmail(rs.getString("email"));
                 member.setNivelAcesso(rs.getString("nivelacesso"));
                 memberList.add(member);
             }

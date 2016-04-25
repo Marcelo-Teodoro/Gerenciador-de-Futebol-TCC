@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
 @ManagedBean(name = "MBMember")
 @ViewScoped
 public class memberBean {
-    
+    private Member member;
     private ListDataModel<Member> memberList;
 
     public ListDataModel<Member> getMemberList() {
@@ -33,6 +33,25 @@ public class memberBean {
         MemberDAO memberDao = new MemberDAO();
         List<Member> memberArrayList = memberDao.getAll();
         memberList = new ListDataModel<Member>(memberArrayList);
+    }
+    
+    public void prepararMember(){
+        member = new Member();
+    }
+    
+    public void saveMember(){        
+        MemberDAO memberDAO = new MemberDAO();
+        memberDAO.save(member);
+        ArrayList<Member> listMembers = (ArrayList<Member>) memberDAO.getAll();
+        memberList = new ListDataModel<>(listMembers);
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
   
 }

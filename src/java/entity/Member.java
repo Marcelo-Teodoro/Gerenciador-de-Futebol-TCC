@@ -7,6 +7,7 @@ package entity;
 
 import java.util.Date;
 import java.util.List;
+import utilities.EnumNivelAcesso;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Member {
     private String eMail;
     private String nivelAcesso;
     private List<Integer> telefone;
+    private EnumNivelAcesso na;
 
     public Member() {
     }
@@ -118,6 +120,14 @@ public class Member {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
+    }
+
+    public EnumNivelAcesso getNa() {
+        return na;
+    }
+
+    public void setNa(EnumNivelAcesso na) {
+        this.na = na;
     }
 
   

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utilities.EnumNivelAcesso;
 
 /**
  *
@@ -173,6 +174,7 @@ public class MemberDAO {
                 member.setRg(rs.getInt("rg"));
                 member.setEmail(rs.getString("endereco"));
                 member.setNivelAcesso(rs.getString("nivelAcesso"));
+              //todo fazer alteracao
             }
             
             conn.close();

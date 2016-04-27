@@ -80,21 +80,17 @@
                   header="Cadastro de Membro do Clube">
 
             <h:form id="formPnlNewMember">
-                <h:panelGrid id="pnlNewMember" columns="1">
+                <h:panelGrid id="pnlNewMember" columns="2">
                     <p:outputLabel value="Nome" />
                     <p:inputText size="30" maxlength="30" value="#{MBMember.member.nomeMember}"/>
 
                     <p:outputLabel value="Função" />
                     <p:selectOneMenu effect="slide" value="#{MBMember.member.nivelAcesso}">   
-                        
                         <f:selectItems value="#{MBMember.nivel}" var="nivel" itemValue="#{nivel}" itemLabel="#{nivel.funcao}"/>                       
                     </p:selectOneMenu>
-
-                    <!--  calendar -->
-                    <p:outputLabel  value="Data de Nascimento" />
-                    <p:calendar pattern="dd/MM/yyyy" mask="true" navigator="true" readonlyInput="true" maxdate="c+0" yearRange="c-100:c+0" value="#{MBMember.member.dtNascimento}"/>
-                    <!-- fim  calendar -->
                     
+                    <p:outputLabel  value="Data de Nascimento" />
+                    <p:calendar locale="pt_BR" pattern="dd/MM/yyyy" mask="true" navigator="true" readonlyInput="true" maxdate="c+0" yearRange="c-100:c+100" value="#{MBMember.member.dtNascimento}"/>                   
 
                     <p:outputLabel value="Endereço" />
                     <p:inputText size="30" maxlength="30"/>
@@ -121,6 +117,7 @@
                 </h:panelGrid>                                
 
             </h:form>
+            
         </p:dialog>
 
     </ui:define>

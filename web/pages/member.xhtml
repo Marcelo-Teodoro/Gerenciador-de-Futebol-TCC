@@ -17,12 +17,17 @@
                          value="#{MBMember.memberList}" 
                          var="member"                     
                          paginator="true"
-                         rows="10">
+                         rows="10"
+                         selectionMode="single"
+                         selection="#{MBMember.member}" 
+                         rowKey="#{member.idMember}">
+
+                <p:ajax event="rowSelect" listener="#{MBMember.onRowSelect}"  />
 
                 <f:facet name="header" >
                     Relação Geral de Membros do Clube
                 </f:facet>
-                
+
                 <p:column headerText="Código" sortBy="#{member.idMember}">
                     <h:outputText value="#{member.idMember}" />
                 </p:column>
@@ -31,8 +36,8 @@
                     <h:outputText value="#{member.nomeMember}" />
                 </p:column>
 
-                <p:column headerText="Função" sortBy="#{member.nivelAcesso}">
-                    <h:outputText value="#{member.nivelAcesso}" />
+                <p:column headerText="Função" sortBy="#{member.nivelAcesso.funcao}">
+                    <h:outputText value="#{member.nivelAcesso.funcao}" />
                 </p:column>
 
                 <p:column headerText="Data Nascimento" sortBy="#{member.dtNascimento}">
@@ -58,7 +63,7 @@
                 <p:column headerText="Email" sortBy="#{member.email}">
                     <h:outputText value="#{member.email}" />
                 </p:column>
-                
+
                 <f:facet name="footer" >
                     <p:commandButton value="Novo" actionListener="#{MBMember.prepararMember()}" 
                                      oncomplete="PF('newMember').show()"
@@ -73,11 +78,17 @@
                   resizable="false"
                   modal="true" appendTo="@(body)"
                   header="Cadastro de Membro do Clube">
-            
+
             <h:form id="formPnlNewMember">
                 <h:panelGrid id="pnlNewMember" columns="2">
                     <p:outputLabel value="Nome" />
                     <p:inputText size="30" maxlength="30" value="#{MBMember.member.nomeMember}"/>
+                    
+                    <p:outputLabel value="Função" />
+                    <p:selectOneMenu value="#{MBMember.member.nivelAcesso}">                        
+                        <f:selectItems value="#{MBMember.nivel}" var="nivel"
+                                       itemValue="#{nivel}" itemLabel="#{nivel.funcao}"/>                        
+                    </p:selectOneMenu>
 
                     <p:outputLabel value="Data de Nascimento" />
                     <p:inputText size="30" maxlength="30"/>                    
@@ -94,21 +105,18 @@
                     <p:outputLabel value="E-Mail" />
                     <p:inputText size="30" maxlength="30"/>
 
-                    <p:outputLabel value="Função" />
-                    <p:inputText size="30" maxlength="30"/>
-
                     <p:outputLabel value="Telefone" />
                     <p:inputText size="30" maxlength="30"/>
 
                 </h:panelGrid>
-                
+
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" actionListener="#{MBMember.saveMember()}"
                                      oncomplete="PF('newMember').hide();" 
                                      update=":formTblMember:tblMember" />
                     <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>
                 </h:panelGrid>                
-                
+
             </h:form>
         </p:dialog>
 

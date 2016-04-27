@@ -5,9 +5,9 @@
  */
 package entity;
 
+import utilities.EnumNivelAcesso;
 import java.util.Date;
 import java.util.List;
-import utilities.EnumNivelAcesso;
 
 /**
  *
@@ -22,31 +22,21 @@ public class Member {
     private int cpf;
     private int rg;
     private String eMail;
-    private String nivelAcesso;
     private List<Integer> telefone;
-    private EnumNivelAcesso na;
+    private EnumNivelAcesso nivelAcesso;
 
     public Member() {
     }
 
-    public Member(Integer idMember, String nomeMember, Date dtNascimento, String endereco, Integer cpf, Integer rg, List<Integer> telefone, String eMail, String nivelAcesso) {
+    public Member(Integer idMember, String nomeMember, Date dtNascimento, String endereco, int cpf, int rg, String eMail, List<Integer> telefone, EnumNivelAcesso nivelAcesso) {
         this.idMember = idMember;
         this.nomeMember = nomeMember;
         this.dtNascimento = dtNascimento;
         this.endereco = endereco;
         this.cpf = cpf;
         this.rg = rg;
-        this.telefone = telefone;
         this.eMail = eMail;
-        this.nivelAcesso = nivelAcesso;
-    }
-
-    public String getNivelAcesso() {
-        return nivelAcesso;
-    }
-    
-
-    public void setNivelAcesso(String nivelAcesso) {
+        this.telefone = telefone;
         this.nivelAcesso = nivelAcesso;
     }
 
@@ -122,14 +112,15 @@ public class Member {
         this.eMail = eMail;
     }
 
-    public EnumNivelAcesso getNa() {
-        return na;
+    public EnumNivelAcesso getNivelAcesso() {
+        return nivelAcesso;
     }
 
-    public void setNa(EnumNivelAcesso na) {
-        this.na = na;
+    public void setNivelAcesso(EnumNivelAcesso nivelAcesso) {
+        this.nivelAcesso = nivelAcesso;
     }
 
+     
   
     
 }

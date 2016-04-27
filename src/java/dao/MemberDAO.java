@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import utilities.EnumNivelAcesso;
 
+
 /**
  *
  * @author Pgz
@@ -38,7 +39,7 @@ public class MemberDAO {
                 stmt.setInt(4, member.getCpf());
                 stmt.setInt(5, member.getRg());
                 stmt.setString(6, member.getEmail());
-                stmt.setString(7, member.getNivelAcesso());
+                stmt.setInt(7, member.getNivelAcesso().getNivelDeAcesso());
 
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
@@ -58,8 +59,8 @@ public class MemberDAO {
                 stmt.setInt(4, member.getCpf());
                 stmt.setInt(5, member.getRg());
                 stmt.setString(6, member.getEmail());
-                stmt.setString(7, member.getNivelAcesso());
-                stmt.setInt(4, member.getIdMember());
+                stmt.setInt(7, member.getNivelAcesso().getNivelDeAcesso());
+                stmt.setInt(8, member.getIdMember());
 
                 stmt.executeUpdate();
                 resultado = member.getIdMember(); // alterei aqui pra ficar igual ao do ProfessorDAO
@@ -130,11 +131,10 @@ public class MemberDAO {
                 member.setCpf(rs.getInt("cpf"));
                 member.setRg(rs.getInt("rg"));
                 member.setEmail(rs.getString("endereco"));
-                member.setNivelAcesso(rs.getString("nivelAcesso"));
+                member.setNivelAcesso(EnumNivelAcesso.getById(rs.getInt("nivelacesso")));
             }
             
             conn.close();
-            stmt.close();
             
         }catch (Exception ex) { 
 
@@ -173,7 +173,7 @@ public class MemberDAO {
                 member.setCpf(rs.getInt("cpf"));
                 member.setRg(rs.getInt("rg"));
                 member.setEmail(rs.getString("endereco"));
-                member.setNivelAcesso(rs.getString("nivelAcesso"));
+                member.setNivelAcesso(EnumNivelAcesso.getById(rs.getInt("nivelacesso")));
               //todo fazer alteracao
             }
             
@@ -212,13 +212,13 @@ public class MemberDAO {
                 member = new Member();
                 member.setIdMember(rs.getInt("idMember"));
                 member.setNomeMember(rs.getString("nomeMember"));
-                System.out.println(member.getNomeMember());
                 member.setDtNascimento(rs.getDate("dtNascimento"));
                 member.setEndereco(rs.getString("endereco"));
                 member.setCpf(rs.getInt("cpf"));
                 member.setRg(rs.getInt("rg"));
                 member.setEmail(rs.getString("email"));
-                member.setNivelAcesso(rs.getString("nivelacesso"));
+                member.setNivelAcesso(EnumNivelAcesso.getById(rs.getInt("nivelacesso")));
+                System.out.println(member.getNivelAcesso());
                 memberList.add(member);
             }
             

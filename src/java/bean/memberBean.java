@@ -6,9 +6,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import org.joda.time.DateTime;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import utilities.EnumNivelAcesso;
 
@@ -18,15 +24,18 @@ import utilities.EnumNivelAcesso;
 @ManagedBean(name = "MBMember")
 @ViewScoped
 public class memberBean implements Serializable {
-
+    
     private Member member;
     private ListDataModel<Member> memberList;
-    EnumNivelAcesso[] enumNivelAcessos;
+    private EnumNivelAcesso[] enumNivelAcessos;
 
-    public memberBean(Member member, ListDataModel<Member> memberList) {
+    public memberBean(Member member, ListDataModel<Member> memberList, EnumNivelAcesso[] enumNivelAcessos) {
         this.member = member;
         this.memberList = memberList;
+        this.enumNivelAcessos = enumNivelAcessos;
     }
+
+    
 
     public memberBean() {
     }
@@ -74,5 +83,15 @@ public class memberBean implements Serializable {
         prepararMember();
         return EnumNivelAcesso.values();
     }
+   
+    public EnumNivelAcesso[] getEnumNivelAcessos() {
+        return enumNivelAcessos;
+    }
+
+    public void setEnumNivelAcessos(EnumNivelAcesso[] enumNivelAcessos) {
+        this.enumNivelAcessos = enumNivelAcessos;
+    }
+    
+    
 
 }

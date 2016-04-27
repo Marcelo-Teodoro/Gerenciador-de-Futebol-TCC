@@ -34,7 +34,7 @@ public class MemberDAO {
 
                 stmt = conn.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, member.getNomeMember());
-                stmt.setDate(2, (Date) member.getDtNascimento());
+                stmt.setDate(2, new Date(member.getDtNascimento().getTime()));
                 stmt.setString(3, member.getEndereco());
                 stmt.setInt(4, member.getCpf());
                 stmt.setInt(5, member.getRg());
@@ -54,7 +54,7 @@ public class MemberDAO {
 
                 stmt = conn.prepareStatement(QUERY_UPDATE);
                 stmt.setString(1, member.getNomeMember());
-                stmt.setDate(2, (Date) member.getDtNascimento());
+                stmt.setDate(2, new Date(member.getDtNascimento().getTime()));
                 stmt.setString(3, member.getEndereco());
                 stmt.setInt(4, member.getCpf());
                 stmt.setInt(5, member.getRg());

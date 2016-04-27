@@ -8,7 +8,7 @@
                 template="/template/modeloSistema.xhtml">
 
     <ui:define name="menu">
-        <ui:include src="/pages/menu.xhtml"/>
+        <ui:include src="/pages/menu.xhtml"/>        
     </ui:define>
 
     <ui:define name="conteudo">
@@ -72,7 +72,7 @@
             </p:dataTable>
         </h:form>   
 
-        <p:dialog widgetVar="newMember"
+        <p:dialog id="newMember" widgetVar="newMember"
                   closable="false"
                   draggable="true"
                   resizable="false"
@@ -80,18 +80,21 @@
                   header="Cadastro de Membro do Clube">
 
             <h:form id="formPnlNewMember">
-                <h:panelGrid id="pnlNewMember" columns="2">
+                <h:panelGrid id="pnlNewMember" columns="1">
                     <p:outputLabel value="Nome" />
                     <p:inputText size="30" maxlength="30" value="#{MBMember.member.nomeMember}"/>
-                    
+
                     <p:outputLabel value="Função" />
-                    <p:selectOneMenu value="#{MBMember.member.nivelAcesso}">                        
-                        <f:selectItems value="#{MBMember.nivel}" var="nivel"
-                                       itemValue="#{nivel}" itemLabel="#{nivel.funcao}"/>                        
+                    <p:selectOneMenu effect="slide" value="#{MBMember.member.nivelAcesso}">   
+                        
+                        <f:selectItems value="#{MBMember.nivel}" var="nivel" itemValue="#{nivel}" itemLabel="#{nivel.funcao}"/>                       
                     </p:selectOneMenu>
 
-                    <p:outputLabel value="Data de Nascimento" />
-                    <p:inputText size="30" maxlength="30"/>                    
+                    <!--  calendar -->
+                    <p:outputLabel  value="Data de Nascimento" />
+                    <p:calendar pattern="dd/MM/yyyy" mask="true" navigator="true" readonlyInput="true" maxdate="c+0" yearRange="c-100:c+0" value="#{MBMember.member.dtNascimento}"/>
+                    <!-- fim  calendar -->
+                    
 
                     <p:outputLabel value="Endereço" />
                     <p:inputText size="30" maxlength="30"/>
@@ -115,7 +118,7 @@
                                      oncomplete="PF('newMember').hide();" 
                                      update=":formTblMember:tblMember" />
                     <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>
-                </h:panelGrid>                
+                </h:panelGrid>                                
 
             </h:form>
         </p:dialog>

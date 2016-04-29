@@ -23,9 +23,9 @@
     margin-top: 10%;
     
 }
-*{
+/**{
     border: black 1px dashed !important;
-}
+}*/
 
 /*.botao{
     background-color: blue;

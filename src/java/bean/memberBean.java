@@ -24,7 +24,7 @@ import utilities.EnumNivelAcesso;
 @ManagedBean(name = "MBMember")
 @ViewScoped
 public class memberBean implements Serializable {
-    
+
     private Member member;
     private ListDataModel<Member> memberList;
     private EnumNivelAcesso[] enumNivelAcessos;
@@ -34,8 +34,6 @@ public class memberBean implements Serializable {
         this.memberList = memberList;
         this.enumNivelAcessos = enumNivelAcessos;
     }
-
-    
 
     public memberBean() {
     }
@@ -83,7 +81,7 @@ public class memberBean implements Serializable {
         prepararMember();
         return EnumNivelAcesso.values();
     }
-   
+
     public EnumNivelAcesso[] getEnumNivelAcessos() {
         return enumNivelAcessos;
     }
@@ -91,7 +89,11 @@ public class memberBean implements Serializable {
     public void setEnumNivelAcessos(EnumNivelAcesso[] enumNivelAcessos) {
         this.enumNivelAcessos = enumNivelAcessos;
     }
-    
-    
 
+
+    public String getFormatoBr(Date data) {
+        prepararMember();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
+    }
 }

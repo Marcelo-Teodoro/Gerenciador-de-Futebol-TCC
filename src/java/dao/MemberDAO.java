@@ -36,8 +36,8 @@ public class MemberDAO {
                 stmt.setString(1, member.getNomeMember());
                 stmt.setDate(2, new Date(member.getDtNascimento().getTime()));
                 stmt.setString(3, member.getEndereco());
-                stmt.setInt(4, member.getCpf());
-                stmt.setInt(5, member.getRg());
+                stmt.setString(4, member.getCpf());
+                stmt.setString(5, member.getRg());
                 stmt.setString(6, member.getEmail());
                 stmt.setInt(7, member.getNivelAcesso().getNivelDeAcesso());
 
@@ -56,8 +56,8 @@ public class MemberDAO {
                 stmt.setString(1, member.getNomeMember());
                 stmt.setDate(2, new Date(member.getDtNascimento().getTime()));
                 stmt.setString(3, member.getEndereco());
-                stmt.setInt(4, member.getCpf());
-                stmt.setInt(5, member.getRg());
+                stmt.setString(4, member.getCpf());
+                stmt.setString(5, member.getRg());
                 stmt.setString(6, member.getEmail());
                 stmt.setInt(7, member.getNivelAcesso().getNivelDeAcesso());
                 stmt.setInt(8, member.getIdMember());
@@ -128,8 +128,8 @@ public class MemberDAO {
                 member.setNomeMember(rs.getString("nomeMember"));
                 member.setDtNascimento(rs.getDate("dtnascimento"));
                 member.setEndereco(rs.getString("endereco"));
-                member.setCpf(rs.getInt("cpf"));
-                member.setRg(rs.getInt("rg"));
+                member.setCpf(rs.getString("cpf"));
+                member.setRg(rs.getString("rg"));
                 member.setEmail(rs.getString("endereco"));
                 member.setNivelAcesso(EnumNivelAcesso.getById(rs.getInt("nivelacesso")));
             }
@@ -170,8 +170,8 @@ public class MemberDAO {
                 member.setNomeMember(rs.getString("nomeMember"));
                 member.setDtNascimento(rs.getDate("dtnascimento"));
                 member.setEndereco(rs.getString("endereco"));
-                member.setCpf(rs.getInt("cpf"));
-                member.setRg(rs.getInt("rg"));
+                member.setCpf(rs.getString("cpf"));
+                member.setRg(rs.getString("rg"));
                 member.setEmail(rs.getString("endereco"));
                 member.setNivelAcesso(EnumNivelAcesso.getById(rs.getInt("nivelacesso")));
               //todo fazer alteracao
@@ -214,8 +214,8 @@ public class MemberDAO {
                 member.setNomeMember(rs.getString("nomeMember"));
                 member.setDtNascimento(rs.getDate("dtNascimento"));
                 member.setEndereco(rs.getString("endereco"));
-                member.setCpf(rs.getInt("cpf"));
-                member.setRg(rs.getInt("rg"));
+                member.setCpf(rs.getString("cpf"));
+                member.setRg(rs.getString("rg"));
                 member.setEmail(rs.getString("email"));
                 member.setNivelAcesso(EnumNivelAcesso.getById(rs.getInt("nivelacesso")));
                 System.out.println(member.getNivelAcesso());

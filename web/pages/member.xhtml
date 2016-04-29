@@ -41,8 +41,8 @@
                     <h:outputText value="#{member.nivelAcesso.funcao}" />
                 </p:column>
 
-                <p:column headerText="Data Nascimento" sortBy="#{member.dtNascimento}">
-                    <h:outputText value="#{member.dtNascimento}" />
+                <p:column headerText="Data Nascimento" sortBy="#{MBMember.getFormatoBr(member.dtNascimento)}">
+                    <h:outputText value="#{MBMember.getFormatoBr(member.dtNascimento)}" />
                 </p:column>
 
                 <p:column headerText="Endereço" sortBy="#{member.endereco}">
@@ -78,7 +78,7 @@
                   draggable="true"
                   resizable="false"
                   modal="true" appendTo="@(body)"
-                  header="Cadastro de Membro do Clube">
+                  header="Cadastro de Membro do Clube - PREENCHA TODOS OS DADOS">
 
             <h:form id="formPnlNewMember">
                 <h:panelGrid id="pnlNewMember" columns="2">
@@ -97,10 +97,10 @@
                     <p:inputText size="30" maxlength="30"/>
 
                     <p:outputLabel value="CPF" />
-                    <p:inputText size="30" maxlength="30"/>
+                    <p:inputMask mask="999.999.999-99" id="cpf" value="#{MBMember.member.cpf}" />
 
                     <p:outputLabel value="RG" />
-                    <p:inputText size="30" maxlength="30"/>
+                    <p:inputMask mask="99.999.999-9" id="rg" value="#{MBMember.member.rg}" />
 
                     <p:outputLabel value="E-Mail" />
                     <p:inputText size="30" maxlength="30"/>

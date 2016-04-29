@@ -5,6 +5,7 @@
  */
 package entity;
 
+import java.text.SimpleDateFormat;
 import utilities.EnumNivelAcesso;
 import java.util.Date;
 import java.util.List;
@@ -19,16 +20,13 @@ public class Member {
     private String nomeMember;
     private Date dtNascimento;
     private String endereco;
-    private int cpf;
-    private int rg;
+    private String cpf;
+    private String rg;
     private String eMail;
     private List<Integer> telefone;
     private EnumNivelAcesso nivelAcesso;
 
-    public Member() {
-    }
-
-    public Member(Integer idMember, String nomeMember, Date dtNascimento, String endereco, int cpf, int rg, String eMail, List<Integer> telefone, EnumNivelAcesso nivelAcesso) {
+    public Member(Integer idMember, String nomeMember, Date dtNascimento, String endereco, String cpf, String rg, String eMail, List<Integer> telefone, EnumNivelAcesso nivelAcesso) {
         this.idMember = idMember;
         this.nomeMember = nomeMember;
         this.dtNascimento = dtNascimento;
@@ -38,6 +36,9 @@ public class Member {
         this.eMail = eMail;
         this.telefone = telefone;
         this.nivelAcesso = nivelAcesso;
+    }
+
+    public Member() {
     }
 
     public Integer getIdMember() {
@@ -88,22 +89,6 @@ public class Member {
         this.eMail = eMail;
     }
 
-    public int getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
-    }
-
-    public int getRg() {
-        return rg;
-    }
-
-    public void setRg(int rg) {
-        this.rg = rg;
-    }
-
     public String geteMail() {
         return eMail;
     }
@@ -120,7 +105,21 @@ public class Member {
         this.nivelAcesso = nivelAcesso;
     }
 
-     
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
   
     
 }

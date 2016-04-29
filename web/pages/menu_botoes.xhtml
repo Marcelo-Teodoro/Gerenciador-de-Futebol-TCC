@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:form >
+        <h:panelGrid columns="2" rowClasses="botao" styleClass="menuCentral" style="margin-top: 5%">
+
+            <p:button outcome="/pages/member.xhtml"
+                      style="height: 10em; width: 10em; "
+                      class="botao"
+                      icon="gravar"
+                      >                             
+            </p:button>
+
+
+            <p:column  >
+                <p:panel header="lalala" >
+                    <h:panelGrid columns="1" styleClass="menuCentral">
+                        <p:button outcome="/pages/member.xhtml"
+                                  style="height: 10em; width: 10em; "
+                                  class="botao"
+                                  icon="gravar"
+                                  >                             
+                        </p:button>
+
+                    </h:panelGrid>
+                </p:panel>
+            </p:column>
+
+
+
+
+        </h:panelGrid>        
+    </h:form>
+</ui:composition>

@@ -10,3 +10,29 @@
 .ui-widget, .ui-widget .ui-widget {
     font-size: 1em !important;
 }
+
+.menuCentral {
+    width: max-content !important; 
+    margin-left:auto !important; 
+    margin-right:auto !important;
+}
+
+.test{
+/*    background-color: red;*/
+    text-align: center !important;
+    margin-top: 10%;
+    
+}
+*{
+    border: black 1px dashed !important;
+}
+
+/*.botao{
+    background-color: blue;
+}*/
+
+.gravar {
+	background-image: url(".../images/icon.png") !important;
+        width: 150px !important;height: 150px !important;
+        text-align: center;
+}

@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class ImageDao {
     
-    public int save(Imagem image) {
+    public int save(Imagem image) throws ClassNotFoundException, SQLException {
 
         // =S inicializando o retorno da função, caso tenha algum problema deve ser retornar o valor -1
         int resultado = -1;

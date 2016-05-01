@@ -6,17 +6,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import org.joda.time.DateTime;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import utilities.EnumNivelAcesso;
+import utilities.JSFUtils;
 
 /**
  * @author Pgz
@@ -48,9 +48,16 @@ public class memberBean implements Serializable {
 
     @PostConstruct
     public void getAllMember() {
-        MemberDAO memberDao = new MemberDAO();
-        List<Member> memberArrayList = memberDao.getAll();
-        memberList = new ListDataModel<>(memberArrayList);
+        
+        try {
+            MemberDAO memberDao = new MemberDAO();
+            List<Member> memberArrayList = memberDao.getAll();
+            memberList = new ListDataModel<>(memberArrayList);
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+            JSFUtils.adicionarMensagemErro(ex.getMessage());
+        }
+        
     }
 
     public void prepararMember() {
@@ -58,10 +65,29 @@ public class memberBean implements Serializable {
     }
 
     public void saveMember() {
-        MemberDAO memberDAO = new MemberDAO();
-        memberDAO.save(member);
-        ArrayList<Member> listMembers = (ArrayList<Member>) memberDAO.getAll();
-        memberList = new ListDataModel<Member>(listMembers);
+        try {
+            MemberDAO memberDAO = new MemberDAO();
+            memberDAO.save(member);
+            ArrayList<Member> listMembers = (ArrayList<Member>) memberDAO.getAll();
+            memberList = new ListDataModel<Member>(listMembers);
+            JSFUtils.adicionarMensagemSucesso("Membro salvo com sucesso!!!");
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+            JSFUtils.adicionarMensagemErro(ex.getMessage());
+        }
+    }
+    
+    public void deleteMember() {
+        try {
+            MemberDAO memberDAO = new MemberDAO();
+            memberDAO.delete(member);
+            ArrayList<Member> listMembers = (ArrayList<Member>) memberDAO.getAll();
+            memberList = new ListDataModel<Member>(listMembers);
+            JSFUtils.adicionarMensagemSucesso("Membro excluído com sucesso!!!");
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+            JSFUtils.adicionarMensagemErro(ex.getMessage());
+        }
     }
 
     public Member getMember() {
@@ -74,7 +100,7 @@ public class memberBean implements Serializable {
 
     public void onRowSelect(SelectEvent event) {
         member = (Member) event.getObject();
-        System.out.println("Member name " + member.getNomeMember());
+        System.out.println("Member = " + member.getNomeMember());
     }
 
     public EnumNivelAcesso[] getNivel() {

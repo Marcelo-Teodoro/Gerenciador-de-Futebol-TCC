@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ConnectionManager {
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
 
         Connection conn = null;
 
@@ -17,15 +17,11 @@ public class ConnectionManager {
         String USER = "root";
         String PASSWORD = "root";
 
-        try {
+        
             Class.forName(STR_DRIVER);
             conn = DriverManager.getConnection(STR_CONEX, USER, PASSWORD);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        
+      
         return conn;
     }
 }

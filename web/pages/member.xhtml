@@ -8,7 +8,6 @@
                 template="/template/modeloSistema.xhtml">
 
     <ui:define name="menu">
-        <h:outputStylesheet library="css" name="stylesheet.css"/>
         <ui:include src="/pages/menu.xhtml" />        
     </ui:define>
 
@@ -65,10 +64,19 @@
                     <h:outputText value="#{member.email}" />
                 </p:column>
 
-                <f:facet name="footer" >
-                    <p:commandButton value="Novo" actionListener="#{MBMember.prepararMember()}" 
+                <f:facet name="footer">
+                    <p:commandButton icon="ui-icon-circle-plus" actionListener="#{MBMember.prepararMember()}" 
                                      oncomplete="PF('newMember').show()"
                                      update=":formPnlNewMember:pnlNewMember" />
+
+                    <p:commandButton icon="ui-icon-trash" 
+                                     oncomplete="PF('deleteMember').show()"
+                                     update=":formPnlDeleteMember:pnlDeleteMember" />
+
+                    <!--<p:commandButton icon="ui-icon-pencil" actionListener="#{MBMember.prepararMember()}" 
+                                     oncomplete="PF('editMember').show()"
+                                     update=":formPnlEditMember:pnlEditMember" />-->
+
                 </f:facet>
             </p:dataTable>
         </h:form>   
@@ -83,15 +91,15 @@
             <h:form id="formPnlNewMember">
                 <h:panelGrid id="pnlNewMember" columns="2">
                     <p:outputLabel value="Nome" />
-                    <p:inputText size="30" maxlength="30" value="#{MBMember.member.nomeMember}"/>
+                    <p:inputText size="30" required="true" requiredMessage="Campo nome requerido" maxlength="30" value="#{MBMember.member.nomeMember}"/>
 
                     <p:outputLabel value="Função" />
                     <p:selectOneMenu effect="slide" value="#{MBMember.member.nivelAcesso}">   
                         <f:selectItems value="#{MBMember.nivel}" var="nivel" itemValue="#{nivel}" itemLabel="#{nivel.funcao}"/>                       
                     </p:selectOneMenu>
-                    
+
                     <p:outputLabel  value="Data de Nascimento" />
-                    <p:calendar locale="pt_BR" pattern="dd/MM/yyyy" mask="true" navigator="true" readonlyInput="true" maxdate="c+0" yearRange="c-100:c+100" value="#{MBMember.member.dtNascimento}"/>                   
+                    <p:calendar required="true" requiredMessage="Insira uma data de Nascimento" locale="pt_BR" pattern="dd/MM/yyyy" mask="true" navigator="true" readonlyInput="true" maxdate="c+0" yearRange="c-100:c+100" value="#{MBMember.member.dtNascimento}"/>
 
                     <p:outputLabel value="Endereço" />
                     <p:inputText size="30" maxlength="30"/>
@@ -113,12 +121,57 @@
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" actionListener="#{MBMember.saveMember()}"
                                      oncomplete="PF('newMember').hide();" 
-                                     update=":formTblMember:tblMember" />
+                                     update=":formTblMember:tblMember :msgGlobal" />
                     <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>
                 </h:panelGrid>                                
 
             </h:form>
-            
+        </p:dialog>
+
+        <p:dialog id="deleteMember" widgetVar="deleteMember"
+                  closable="false"
+                  draggable="true"
+                  resizable="false"
+                  modal="true" appendTo="@(body)"
+                  header="Exclusão de Membro do Clube ">
+
+            <h:form id="formPnlDeleteMember" >
+                <h:panelGrid id="pnlDeleteMember" columns="2">
+                    <p:outputLabel value="Nome" />
+                    <p:inputText readonly="true" value="#{MBMember.member.nomeMember}"/>
+
+                    <p:outputLabel value="Função" />
+                    <p:inputText readonly="true" value="#{MBMember.member.nivelAcesso}"/>
+
+                    <p:outputLabel  value="Data de Nascimento" />
+                    <p:inputText readonly="true"  value="#{MBMember.member.dtNascimento}"/>
+
+                    <p:outputLabel value="Endereço" />
+                    <p:inputText readonly="true" value="a"/>
+
+                    <p:outputLabel value="CPF" />
+                    <p:inputText readonly="true" value="#{MBMember.member.cpf}" />
+
+                    <p:outputLabel value="RG" />
+                    <p:inputText readonly="true" value="#{MBMember.member.rg}" />
+
+                    <p:outputLabel value="E-Mail" />
+                    <p:inputText readonly="true"/>
+
+                    <p:outputLabel value="Telefone" />
+                    <p:inputText readonly="true" />
+
+                </h:panelGrid>
+
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Excluir" actionListener="#{MBMember.deleteMember()}"
+                                     oncomplete="PF('deleteMember').hide();" 
+                                     update=":formTblMember:tblMember :msgGlobal" />
+                    <p:commandButton value="Cancelar" onclick="PF('deleteMember').hide();"/>
+                </h:panelGrid>                                
+
+            </h:form>
+
         </p:dialog>
 
     </ui:define>

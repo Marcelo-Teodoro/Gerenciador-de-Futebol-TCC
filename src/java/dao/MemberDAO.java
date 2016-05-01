@@ -19,13 +19,13 @@ import utilities.EnumNivelAcesso;
  */
 public class MemberDAO {
     
-    public int save(Member member) {
+    public int save(Member member) throws SQLException, ClassNotFoundException {
 
         //inicializando o retorno da função, caso tenha algum problema deve retornar o valor -1
         int resultado = -1;
 
         Connection conn = ConnectionManager.getConnection();
-        try {
+        
             PreparedStatement stmt = null;
             String QUERY_INSERT = "insert into member (nomeMember, dtNascimento, endereco, cpf, rg, email, nivelacesso) values (?, ?, ?, ?, ?, ?, ?)";
             String QUERY_UPDATE = "update member set nomeMember = ?, dtNascimento = ?, endereco = ? , cpf = ?, rg = ?, email = ?, nivelacesso = ? where idmember = ? ";
@@ -68,20 +68,16 @@ public class MemberDAO {
                 stmt.close();
             }
 
-        } catch (Exception ex) {
-
-            ex.printStackTrace();
-            resultado = -1;
-        }       
+          
         return resultado;
     }
 
-    public boolean delete(Member member) {
+    public boolean delete(Member member) throws SQLException, ClassNotFoundException {
 
         boolean resultado = false;
         Connection conn = ConnectionManager.getConnection();
 
-        try {
+        
             PreparedStatement stmt = null;
 
             String QUERY_DELETE = "delete from member where idmember = ?";
@@ -95,15 +91,11 @@ public class MemberDAO {
 
             resultado = true;
 
-        } catch (SQLException ex) {
-
-            ex.printStackTrace();
-            resultado = false;
-        }
+        
         return resultado;
     }
     
-    public Member byLoginPass (String login, String pass){
+    public Member byLoginPass (String login, String pass) throws ClassNotFoundException, SQLException{
         Integer idMember = null;
         Member member = new Member();
         
@@ -147,13 +139,13 @@ public class MemberDAO {
         
     }
     
-    public Member getByID (Integer id){
+    public Member getByID (Integer id) throws SQLException, ClassNotFoundException{
         Integer idMember = null;
         Member member = new Member();
         
         Connection conn = ConnectionManager.getConnection();
         
-        try{
+   
             
             String Query_Pesquisa = "select * from member where idmember = ?"; 
             PreparedStatement stmt = null;
@@ -180,24 +172,19 @@ public class MemberDAO {
             conn.close();
             stmt.close();
             
-        }catch (Exception ex) { 
-
-            ex.printStackTrace();
-            member = null;
-
-        }
+        
         
         return member;
         
     }
     
-    public List<Member> getAll (){
+    public List<Member> getAll () throws SQLException, ClassNotFoundException{
         List<Member> memberList = new ArrayList<Member>();
         Member member;
         
         Connection conn = ConnectionManager.getConnection();
         
-        try{
+        
             
             String Query_Pesquisa = "select * from member"; 
             PreparedStatement stmt = null;
@@ -225,12 +212,7 @@ public class MemberDAO {
             conn.close();
             stmt.close();
             
-        }catch (Exception ex) { 
-
-            ex.printStackTrace();
-            member = null;
-
-        }
+        
         
         return memberList;
         

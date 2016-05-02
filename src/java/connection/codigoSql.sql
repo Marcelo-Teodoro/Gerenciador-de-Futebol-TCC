@@ -8,8 +8,8 @@ create table member(
     nomeMember varchar(255),
     dtNascimento date,
     endereco varchar(255),
-    cpf int,
-    rg int,
+    cpf varchar(50),
+    rg varchar(50),
     email varchar(255),
     nivelacesso int
 	

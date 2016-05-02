@@ -67,7 +67,7 @@
                 </p:column>
 
                 <f:facet id="facetBtn" name="footer">
-                    <p:commandButton icon="ui-icon-circle-plus" actionListener="#{MBMember.prepararMember()}" 
+                    <p:commandButton icon="ui-icon-circle-plus"  
                                      oncomplete="PF('newMember').show()"
                                      update=":formPnlNewMember:pnlNewMember" />
 
@@ -75,7 +75,7 @@
                                      oncomplete="PF('deleteMember').show()"
                                      update=":formPnlDeleteMember:pnlDeleteMember"/>
 
-                    <!--<p:commandButton icon="ui-icon-pencil" actionListener="#{MBMember.prepararMember()}" 
+                    <!--<p:commandButton icon="ui-icon-pencil" 
                                      oncomplete="PF('editMember').show()"
                                      update=":formPnlEditMember:pnlEditMember" />-->
 
@@ -92,19 +92,20 @@
 
             <h:form id="formPnlNewMember">
                 <h:panelGrid id="pnlNewMember" columns="2">
+                    
                     <p:outputLabel value="Nome" />
                     <p:inputText size="30" required="true" requiredMessage="Campo nome requerido" maxlength="30" value="#{MBMember.member.nomeMember}"/>
 
                     <p:outputLabel value="Função" />
                     <p:selectOneMenu effect="slide" value="#{MBMember.member.nivelAcesso}">   
+
+                    <p:outputLabel value="Endereço" />
+                    <p:inputText size="30" maxlength="30" value="#{MBMember.member.endereco}"/>
                         <f:selectItems value="#{MBMember.nivel}" var="nivel" itemValue="#{nivel}" itemLabel="#{nivel.funcao}"/>                       
                     </p:selectOneMenu>
 
                     <p:outputLabel  value="Data de Nascimento" />
                     <p:calendar required="true" requiredMessage="Insira uma data de Nascimento" locale="pt_BR" pattern="dd/MM/yyyy" mask="true" navigator="true" readonlyInput="true" maxdate="c+0" yearRange="c-100:c+100" value="#{MBMember.member.dtNascimento}"/>
-
-                    <p:outputLabel value="Endereço" />
-                    <p:inputText size="30" maxlength="30"/>
 
                     <p:outputLabel value="CPF" />
                     <p:inputMask mask="999.999.999-99" id="cpf" value="#{MBMember.member.cpf}" />
@@ -149,7 +150,7 @@
                     <p:inputText readonly="true"  value="#{MBMember.member.dtNascimento}"/>
 
                     <p:outputLabel value="Endereço" />
-                    <p:inputText readonly="true" value="a"/>
+                    <p:inputText readonly="true" value="#{MBMember.member.endereco}"/>
 
                     <p:outputLabel value="CPF" />
                     <p:inputText readonly="true" value="#{MBMember.member.cpf}" />

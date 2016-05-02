@@ -109,7 +109,7 @@ public class memberBean implements Serializable {
     }
 
     public EnumNivelAcesso[] getNivel() {
-        prepararMember();
+        
         return EnumNivelAcesso.values();
     }
 

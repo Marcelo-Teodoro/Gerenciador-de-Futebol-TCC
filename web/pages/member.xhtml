@@ -23,8 +23,8 @@
                          selection="#{MBMember.member}" 
                          rowKey="#{member.idMember}">
 
-                <p:ajax event="rowSelect" listener="#{MBMember.onRowSelect}" update="ExcluirBtn" />
-                <p:ajax event="rowUnselect" listener="#{MBMember.onRowUnselect(event)}" update="ExcluirBtn" />
+                <p:ajax event="rowSelect" listener="#{MBMember.onRowSelect}" update="ExcluirBtn EditBtn" />
+                <p:ajax event="rowUnselect" listener="#{MBMember.onRowUnselect(event)}" update="ExcluirBtn EditBtn" />
 
                 <f:facet name="header" >
                     Relação Geral de Membros do Clube
@@ -67,7 +67,7 @@
                 </p:column>
 
                 <f:facet id="facetBtn" name="footer">
-                    <p:commandButton icon="ui-icon-circle-plus"  
+                    <p:commandButton icon="ui-icon-circle-plus"  actionListener="#{MBMember.prepararMember()}"
                                      oncomplete="PF('newMember').show()"
                                      update=":formPnlNewMember:pnlNewMember" />
 
@@ -75,9 +75,10 @@
                                      oncomplete="PF('deleteMember').show()"
                                      update=":formPnlDeleteMember:pnlDeleteMember"/>
 
-                    <!--<p:commandButton icon="ui-icon-pencil" 
+                    <p:commandButton id="EditBtn" disabled="#{!MBMember.selecionado}"
+                                     icon="ui-icon-pencil"
                                      oncomplete="PF('editMember').show()"
-                                     update=":formPnlEditMember:pnlEditMember" />-->
+                                     update=":formPnlEditMember:pnlEditMember" />
 
                 </f:facet>
             </p:dataTable>
@@ -125,9 +126,9 @@
                     <p:commandButton value="Salvar" actionListener="#{MBMember.saveMember()}"
                                      oncomplete="PF('newMember').hide();" 
                                      update=":formTblMember:tblMember :msgGlobal" />
-                    <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>
-                </h:panelGrid>                                
-
+                    <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>                    
+                </h:panelGrid> 
+               
             </h:form>
         </p:dialog>
 
@@ -176,6 +177,55 @@
 
             </h:form>
 
+        </p:dialog>
+        
+        <p:dialog id="editMember" widgetVar="editMember"
+                  closable="false"
+                  draggable="true"
+                  resizable="false"
+                  modal="true" appendTo="@(body)"
+                  header="Editar Membro do Clube - PREENCHA TODOS OS DADOS">
+
+            <h:form id="formPnlEditMember">
+                <h:panelGrid id="pnlEditMember" columns="2">
+                    
+                    <p:outputLabel value="Nome" />
+                    <p:inputText size="30" required="true" requiredMessage="Campo nome requerido" maxlength="30" value="#{MBMember.member.nomeMember}"/>
+
+                    <p:outputLabel value="Função" />
+                    <p:selectOneMenu effect="slide" value="#{MBMember.member.nivelAcesso}">   
+
+                    <p:outputLabel value="Endereço" />
+                    <p:inputText size="30" maxlength="30" value="#{MBMember.member.endereco}"/>
+                        <f:selectItems value="#{MBMember.nivel}" var="nivel" itemValue="#{nivel}" itemLabel="#{nivel.funcao}"/>                       
+                    </p:selectOneMenu>
+
+                    <p:outputLabel  value="Data de Nascimento" />
+                    <p:calendar required="true" requiredMessage="Insira uma data de Nascimento" locale="pt_BR" pattern="dd/MM/yyyy" mask="true" navigator="true" readonlyInput="true" maxdate="c+0" yearRange="c-100:c+100" value="#{MBMember.member.dtNascimento}"/>
+
+                    <p:outputLabel value="CPF" />
+                    <p:inputMask mask="999.999.999-99" id="cpf" value="#{MBMember.member.cpf}" />
+
+                    <p:outputLabel value="RG" />
+                    <p:inputMask mask="99.999.999-9" id="rg" value="#{MBMember.member.rg}" />
+
+                    <p:outputLabel value="E-Mail" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                    <p:outputLabel value="Telefone" />
+                    <p:inputText size="30" maxlength="30"/>
+
+                </h:panelGrid>
+
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar" actionListener="#{MBMember.saveMember()}"
+                                     oncomplete="PF('editMember').hide();" 
+                                     update=":formTblMember:tblMember :msgGlobal"
+                                     action="#{MBMember.setSelecionado(false)}"/>
+                    <p:commandButton value="Cancelar" onclick="PF('editMember').hide();"/>
+                </h:panelGrid>                                
+
+            </h:form>
         </p:dialog>
 
     </ui:define>

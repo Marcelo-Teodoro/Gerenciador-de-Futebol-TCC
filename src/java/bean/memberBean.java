@@ -25,12 +25,14 @@ import utilities.JSFUtils;
 @ViewScoped
 public class memberBean implements Serializable {
 
+    private boolean selecionado;
     private Member member;
     private ListDataModel<Member> memberList;
     private EnumNivelAcesso[] enumNivelAcessos;
 
-    public memberBean(Member member, ListDataModel<Member> memberList, EnumNivelAcesso[] enumNivelAcessos) {
+    public memberBean(Member member, boolean selecionado, ListDataModel<Member> memberList, EnumNivelAcesso[] enumNivelAcessos) {
         this.member = member;
+        this.selecionado = selecionado;
         this.memberList = memberList;
         this.enumNivelAcessos = enumNivelAcessos;
     }
@@ -100,7 +102,10 @@ public class memberBean implements Serializable {
 
     public void onRowSelect(SelectEvent event) {
         member = (Member) event.getObject();
-        System.out.println("Member = " + member.getNomeMember());
+        selecionado = true;
+        setSelecionado(true);
+        System.out.println("Member = " + member.getNomeMember()
+        + " SELECIONADO " + selecionado);
     }
 
     public EnumNivelAcesso[] getNivel() {
@@ -122,4 +127,17 @@ public class memberBean implements Serializable {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(data);
     }
+
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
+    }
+    
+    public void onRowUnselect(SelectEvent event){
+        selecionado = false;
+    }
+        
 }

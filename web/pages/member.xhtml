@@ -17,8 +17,7 @@
                          value="#{MBMember.memberList}" 
                          var="member"                     
                          paginator="true"
-                         rows="10"
-                         
+                         rows="10"                         
                          selectionMode="single"
                          selection="#{MBMember.member}" 
                          rowKey="#{member.idMember}">
@@ -125,7 +124,8 @@
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" actionListener="#{MBMember.saveMember()}"
                                      oncomplete="PF('newMember').hide();" 
-                                     update=":formTblMember:tblMember :msgGlobal" />
+                                     update=":formTblMember:tblMember :msgGlobal" 
+                                     action="#{MBMember.setSelecionado(false)}"/>
                     <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>                    
                 </h:panelGrid> 
                

@@ -15,7 +15,7 @@ public class ConnectionManager {
         String STR_DRIVER = "org.gjt.mm.mysql.Driver";
         String STR_CONEX = "jdbc:mysql://localhost:3306/dbfutebolmanager";
         String USER = "root";
-        String PASSWORD = "";
+        String PASSWORD = "root";
 
         
             Class.forName(STR_DRIVER);

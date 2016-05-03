@@ -50,7 +50,7 @@ public class memberBean implements Serializable {
 
     @PostConstruct
     public void getAllMember() {
-        
+        prepararMember();
         try {
             MemberDAO memberDao = new MemberDAO();
             List<Member> memberArrayList = memberDao.getAll();

@@ -23,12 +23,4 @@ create table telefone(
 
 
 
-insert into member(nomeMember,dtnascimento, endereco, cpf, rg, email, nivelacesso) values ("Marcelo", 19900207,"rua tal", null, 10999999, "test@test.test", 1);
-insert into member(nomeMember,dtnascimento, endereco, cpf, rg, email, nivelacesso) values ("Marcelo 2", 19900207,"rua tal", null, 10999999, "test@test.test", 2);
-insert into member(nomeMember,dtnascimento, endereco, cpf, rg, email, nivelacesso) values ("Marcelo 3", 19900207,"rua tal", null, 10999999, "test@test.test", 3);
-insert into member(nomeMember,dtnascimento, endereco, cpf, rg, email, nivelacesso) values ("Marcelo 4", 19900207,"rua tal", null, 10999999, "test@test.test", 4);
-insert into member(nomeMember) values ("Indigente 2");
-insert into member(nomeMember) values ("Mendigo 3");
-insert into member(nomeMember) values ("Sei lá 4");
-
 select * from member;

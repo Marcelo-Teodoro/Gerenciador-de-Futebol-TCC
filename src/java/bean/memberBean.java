@@ -29,6 +29,7 @@ public class memberBean implements Serializable {
     private Member member;
     private ListDataModel<Member> memberList;
     private EnumNivelAcesso[] enumNivelAcessos;
+    private Member selectedMember;
 
     public memberBean(Member member, boolean selecionado, ListDataModel<Member> memberList, EnumNivelAcesso[] enumNivelAcessos) {
         this.member = member;
@@ -108,6 +109,10 @@ public class memberBean implements Serializable {
         + " SELECIONADO " + selecionado);
     }
 
+    public void onRowUnselect(SelectEvent event){
+        selecionado = false;
+    }
+    
     public EnumNivelAcesso[] getNivel() {
         
         return EnumNivelAcesso.values();
@@ -121,13 +126,6 @@ public class memberBean implements Serializable {
         this.enumNivelAcessos = enumNivelAcessos;
     }
 
-
-    public String getFormatoBr(Date data) {
-        prepararMember();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
-    }
-
     public boolean isSelecionado() {
         return selecionado;
     }
@@ -135,9 +133,20 @@ public class memberBean implements Serializable {
     public void setSelecionado(boolean selecionado) {
         this.selecionado = selecionado;
     }
-    
-    public void onRowUnselect(SelectEvent event){
-        selecionado = false;
+
+    public String getFormatoBr(Date data) {
+        prepararMember();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
+    
+    public Member getSelectedMember() {
+        return selectedMember;
+    }
+ 
+    public void setSelectedMember(Member selectedMember) {
+        this.selectedMember = selectedMember;
+    }
+    
         
 }

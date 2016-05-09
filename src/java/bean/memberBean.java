@@ -24,7 +24,8 @@ import utilities.JSFUtils;
 @ManagedBean(name = "MBMember")
 @ViewScoped
 public class memberBean implements Serializable {
-
+    
+    private boolean click;
     private boolean selecionado;
     private Member member;
     private ListDataModel<Member> memberList;
@@ -103,8 +104,8 @@ public class memberBean implements Serializable {
 
     public void onRowSelect(SelectEvent event) {
         member = (Member) event.getObject();
-        selecionado = true;
-        setSelecionado(true);
+//        selecionado = true;
+//        setSelecionado(true);
         System.out.println("Member = " + member.getNomeMember()
         + " SELECIONADO " + selecionado);
     }
@@ -148,5 +149,19 @@ public class memberBean implements Serializable {
         this.selectedMember = selectedMember;
     }
     
+    
+//    public void isClick() {
+//        System.out.println("Clicado");
+//    }
+//    
+
+    public boolean isClick() {
+        System.out.println("Clicado");
+        return click;
+    }
+
+    public void setClick(boolean click) {
+        this.click = click;
+    }
         
 }

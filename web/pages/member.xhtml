@@ -37,43 +37,7 @@
 
                 <f:facet name="header" >
                     Relação Geral de Membros do Clube
-                </f:facet>
-
-                <!-- <p:column headerText="Código" sortBy="#{member.idMember}">
-                    <h:outputText value="#{member.idMember}" />
-                </p:column>
-
-                <p:column headerText="Nome" sortBy="#{member.nomeMember}">
-                    <h:outputText value="#{member.nomeMember}" />
-                </p:column>
-
-                <p:column headerText="Função" sortBy="#{member.nivelAcesso.funcao}">
-                    <h:outputText value="#{member.nivelAcesso.funcao}" />
-                </p:column>
-
-                <p:column headerText="Data Nascimento" sortBy="#{MBMember.getFormatoBr(member.dtNascimento)}">
-                    <h:outputText value="#{MBMember.getFormatoBr(member.dtNascimento)}" />
-                </p:column>
-
-                <p:column headerText="Endereço" sortBy="#{member.endereco}">
-                    <h:outputText value="#{member.endereco}" />
-                </p:column>
-
-                <p:column headerText="CPF" sortBy="#{member.cpf}">
-                    <h:outputText value="#{member.cpf}" />
-                </p:column>
-
-                <p:column headerText="RG" sortBy="#{member.rg}">
-                    <h:outputText value="#{member.rg}" />
-                </p:column>
-
-                <p:column headerText="Telefone" sortBy="#{member.telefone}">
-                    <h:outputText value="#{member.telefone}" />
-                </p:column>
-
-                <p:column headerText="Email" sortBy="#{member.email}">
-                    <h:outputText value="#{member.email}" />
-                </p:column> -->
+                </f:facet>                
 
                 <f:facet id="facetBtn" name="footer">
                     <p:commandButton icon="ui-icon-circle-plus"  actionListener="#{MBMember.prepararMember()}"
@@ -124,10 +88,10 @@
 
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" actionListener="#{MBMember.saveMember()}"
-                                     oncomplete="PF('newMember').hide();" 
-                                     update=":formTblMember:tblMember :msgGlobal" 
+                                     update=":formTblMember:tblMember :msgGlobal :formPnlNewMember:pnlNewMember"   
+                                     oncomplete="#{MBMember.fechar}"
                                      action="#{MBMember.setSelecionado(false)}"/>
-                    <p:commandButton value="Cancelar" onclick="PF('newMember').hide();"/>                    
+                    <p:commandButton value="Cancelar" onclick="PF('newMember').hide();" />                    
                 </h:panelGrid> 
 
             </h:form>
